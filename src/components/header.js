@@ -7,7 +7,7 @@ export default function Header(props) {
     <header>
       <TopNav 
       	onRestartGame={() => props.onRestartGame()}
-      	onShowInfo={() => props.onShowInfo()}
+      	onShowInfo={(flag) => props.onShowInfo(flag)}
       />
       <h1>HOT or COLD</h1>
     </header>

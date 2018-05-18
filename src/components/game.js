@@ -16,15 +16,9 @@ export default class Game extends React.Component {
     };
 	}
 
-  showInfoWhat() {
+  displayInfo(showInfo) {
     this.setState({
-      showInfo: true
-    });
-  }
-
-  hideInfoWhat() {
-    this.setState({
-      showInfo: false
+      showInfo
     });
   }
 
@@ -76,7 +70,7 @@ export default class Game extends React.Component {
         <div>
           <Header 
             onRestartGame={() => this.restartGame()}
-            onShowInfo={() => this.showInfoWhat()}
+            onShowInfo={(flag) => this.displayInfo(flag)}
           />
           <main role="main">
             <GuessSection feedback={feedback} onMakeGuess={guess => this.makeGuess(guess)} />
@@ -87,7 +81,7 @@ export default class Game extends React.Component {
     } else {
       return (
         <div>
-          <InfoSection onHideInfo={() => this.hideInfoWhat()} />
+          <InfoSection onShowInfo={(flag) => this.displayInfo(flag)} />
         </div>
       );
     }

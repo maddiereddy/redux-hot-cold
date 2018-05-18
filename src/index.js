@@ -7,8 +7,6 @@ import store from './store';
 import './reset.css';
 import './index.css';
 
-import Game from './components/game';
-
 ReactDOM.render(
   <Provider store={store}>
     <Game />

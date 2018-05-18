@@ -7,7 +7,7 @@ export default function TopNav(props) {
       <ul className="clearfix">
         <li>
           <a href="#what" className="what" aria-label="How to play"
-            onClick={() => props.onShowInfo()}> What?
+            onClick={() => props.onShowInfo(true)}> What?
           </a>
         </li>
         <li>

@@ -13,7 +13,7 @@ export default function InfoSection(props) {
           <li>You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
         </ol>
         <br />
-        <button onClick={() => props.onHideInfo()}>Got it!</button>
+        <button onClick={() => props.onShowInfo(false)}>Got it!</button>
         <br />
       </section>
     </div>
