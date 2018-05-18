@@ -1,70 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Header from './header';
 import InfoSection from './info-section';
 import GuessSection from './guess-section';
 import StatusSection from './status-section';
 
-export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
+import { makeGuess, displayInfo, restartGame } from '../actions';
 
-    this.state = {
-      guesses: [],
-      feedback: 'Make your guess!',
-      correctAnswer: Math.round(Math.random() * 100) + 1,
-      showInfo: false
-    };
-	}
-
-  displayInfo(showInfo) {
-    this.setState({
-      showInfo
-    });
-  }
-
-	restartGame() {
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      correctAnswer: Math.floor(Math.random() * 100) + 1,
-      showInfo: false
-    });
+export class Game extends React.Component {
+  restartGame() {
+    this.props.dispatch(restartGame());
   }
 
   makeGuess(guess) {
-    guess = parseInt(guess, 10);
-    if (isNaN(guess)) {
-      this.setState({ feedback: 'Please enter a valid number' });
-      return;
-    }
-
-    const difference = Math.abs(guess - this.state.correctAnswer);
-
-    let feedback;
-    if (difference >= 50) {
-      feedback = 'You\'re Ice Cold...';
-    } else if (difference >= 30) {
-      feedback = 'You\'re Cold...';
-    } else if (difference >= 10) {
-      feedback = 'You\'re Warm.';
-    } else if (difference >= 3) {
-      feedback = 'You\'re Hot!';
-    } else if (difference >= 1) {
-      feedback = 'You\'re Burnin!';
-    } else {
-      feedback = 'You got it!';
-    }
-
-    this.setState({
-      feedback,
-      guesses: [...this.state.guesses, guess]
-    });
+      this.props.dispatch(makeGuess(guess));
   }
 
-
-	render() {
-		const { feedback, guesses, showInfo } = this.state;
-
+  displayInfo(flag) {
+    this.props.dispatch(displayInfo(flag));
+  }
+  
+  render() {
+    const { feedback, guesses, showInfo } = this.props;
     if (!showInfo) {
       return (
         <div>
@@ -88,3 +46,11 @@ export default class Game extends React.Component {
 		
   }
 }	
+
+const mapStateToProps = state => ({
+  feedback: state.feedback,
+  guesses: state.guesses,
+  showInfo: state.showInfo
+});
+
+export default connect(mapStateToProps)(Game);
