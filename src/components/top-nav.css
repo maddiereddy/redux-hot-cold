@@ -8,6 +8,7 @@ nav ul li {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.2em;
+  padding: 0.7em;
 }
 
 nav ul li:first-child {
