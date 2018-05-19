@@ -12,7 +12,7 @@ export const reducer = (state=initialState, action) => {
         return Object.assign({}, state, {
             guesses: [],
             feedback: 'Make your guess!',
-            correctAnswer: Math.floor(Math.random() * 100) + 1,
+            correctAnswer: action.correctAnswer,
             showInfo: false
         });
     } else if (action.type === actions.MAKE_GUESS) {
