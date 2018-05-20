@@ -4,8 +4,8 @@ import './info-section.css';
 import { displayInfo } from '../actions';
 
 export class InfoSection extends React.Component {
-  displayInfo(flag) {
-    this.props.dispatch(displayInfo(flag));
+  displayInfo() {
+    this.props.dispatch(displayInfo(false));
   }
 
   render() {
@@ -20,7 +20,7 @@ export class InfoSection extends React.Component {
             <li>You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
           </ol>
           <br />
-          <button onClick={() => this.displayInfo(false)}>Got it!</button>
+          <button className='done' onClick={() => this.displayInfo()}>Got it!</button>
           <br />
         </section>
       </div>

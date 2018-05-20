@@ -9,7 +9,8 @@ export class TopNav extends React.Component {
   }
 
   restartGame() {
-    this.props.dispatch(restartGame());
+    const correctAnswer = Math.floor(Math.random() * 100) + 1;
+    this.props.dispatch(restartGame(correctAnswer));
   }
 
   render() {
